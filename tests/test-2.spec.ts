@@ -1,18 +1,19 @@
 import { test, expect } from '@playwright/test';
 
 test('test', async ({ page }) => {
-  await page.goto('https://www.amazon.com/');
-  await page.getByRole('button', { name: 'Submit' }).first().click();
-  await page.getByRole('link', { name: 'Customer Service' }).click();
-  await page.getByRole('link', { name: 'Gift Cards' }).click();
-  await page.getByRole('link', { name: 'Amazon Reload' }).click();
-  await page.locator('#nav-xshop').getByRole('link', { name: 'Sell' }).click();
-  await page.getByText('Today\'s Deals Customer Service Gift Cards Registry Sell Disability Customer Supp').click();
-  await page.getByRole('link', { name: 'Amazon' }).filter({ hasText: '.us' }).click();
-  await page.getByRole('link', { name: 'Choose a language for shopping.' }).click();
-  await page.locator('#icp-currency-dropdown-selected-item-prompt').getByText('$ - USD - US Dollar (Default)').click();
-  await page.locator('#icp-currency-dropdown_49').click();
-  await page.locator('label').filter({ hasText: 'Deutsch - DE - Übersetzung' }).click();
-  await page.locator('label').filter({ hasText: 'English - EN' }).locator('i').click();
-  await page.getByRole('link', { name: 'OTTERBOX DEFENDER SERIES SCREENLESS EDITION Case for iPhone Xs & iPhone X - Retail Packaging - BLACK' }).click();
+  await page.goto('https://www.flipkart.com/industrial-scientific-supplies/industrial-testing-devices/pr?sid=gsx,gkc&p[]=facets.serviceability%5B%5D%3Dtrue&otracker=categorytree&otracker=nmenu_sub_Sports%2C%20Books%20%26%20More_0_Industrial%20Testing%20Devices');
+  await page.getByRole('link', { name: 'Formal Trousers' }).click();
+  const [page1] = await Promise.all([
+    page.waitForEvent('popup'),
+    page.locator('div:nth-child(3) > ._13oc-S > div:nth-child(2) > ._1xHGtK > ._2UzuFa').click()
+  ]);
+  await page1.locator('._2r_T1I').first().click();
+  await page1.locator('._2r_T1I').first().click();
+  await page1.locator('._2r_T1I').first().dblclick();
+  await page1.locator('li:nth-child(2) > ._1AuMiq > ._2E1FGS > .q6DClP').click();
+  await page1.getByRole('button', { name: 'Add to cart' }).click();
+  await page1.getByRole('link', { name: '30' }).click();
+  await page1.getByRole('button', { name: 'Add to cart' }).click();
+  await page1.getByRole('button', { name: 'Place Order' }).click();
+  await page1.getByRole('button', { name: '✕' }).click();
 });
