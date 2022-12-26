@@ -1,6 +1,9 @@
-name: Azure Static Web Apps CI/CD
+name: Apps CI/CD
 
 on:
+  # Trigger workflow on Friday at 1.00 AM UTC
+  schedule:
+     - cron: '0 1 * * 5'
   push:
     branches: 
       - main
@@ -12,11 +15,8 @@ on:
 jobs:
   test:
     name: "Test site using Playwright"
-    timeout-minutes: 60
-    needs: build_and_deploy_job
     runs-on: ubuntu-latest 
     steps:
-      - uses: actions/checkout@master
       - uses: actions/setup-node@v2
         with:
           node-version: '18.x'
@@ -27,9 +27,3 @@ jobs:
       - name: Run Playwright Tests      
         run: |   
           npx playwright test --reporter=html
-  close_pull_request_job:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
-    runs-on: ubuntu-latest
-    name: Close Pull Request Job
-    steps:
-      - name: Close Pull Request
