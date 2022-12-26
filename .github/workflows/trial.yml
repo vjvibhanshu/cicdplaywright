@@ -2,13 +2,13 @@ name: Apps CI/CD
 
 on:
   # Trigger workflow on Friday at 1.00 AM UTC
-  schedule:
-     - cron: '0 1 * * 5'
+  #schedule:
+  #   - cron: '0 1 * * 5'
   push:
     branches: 
       - main
   pull_request:
-    types: [opened, synchronize, reopened, closed]
+    types: [pull]
     branches:
       - main
 
